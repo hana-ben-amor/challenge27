@@ -1,0 +1,83 @@
+<nav class="navbar navbar-expand-lg bg-white sticky-top">
+    <div class="container">
+      <a class="navbar-brand" href="#">
+        <img src="../../assets/images/Design sans titre.png" width="250px" height="100px" alt="">
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="" routerLinkActive="active">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="about" routerLinkActive="active">About</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="contact" routerLinkActive="active">Contact</a>
+          </li>
+          <li class="nav-item">
+            <a href="login" class="btn btn-brand ms-lg-3">Login</a>
+          </li>
+          <li class="nav-item">
+            <a href="register" class="btn btn-brand ms-lg-3">Register</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  
+  <div class="container mt-5">
+    <form>
+      <div class="row mb-3">
+        <label for="medicationName" class="col-sm-3 col-form-label">Medication Name:</label>
+        <div class="col-sm-9">
+          <input type="text" id="medicationName" class="form-control" [(ngModel)]="medicationName" name="medicationName">
+        </div>
+      </div>
+      <div class="row mb-3">
+        <label for="dosage" class="col-sm-3 col-form-label">Dosage:</label>
+        <div class="col-sm-9">
+          <input type="text" id="dosage" class="form-control" [(ngModel)]="dosage" name="dosage">
+        </div>
+      </div>
+      <div class="row mb-3">
+        <label for="frequency" class="col-sm-3 col-form-label">Frequency:</label>
+        <div class="col-sm-9">
+          <select id="frequency" class="form-select" [(ngModel)]="selectedSchedule" name="frequency">
+            <option *ngFor="let schedule of preDefinedSchedules" [value]="schedule">{{ schedule }}</option>
+            <option value="Custom">Custom</option>
+          </select>
+        </div>
+      </div>
+      <div class="row mb-3" *ngIf="selectedSchedule === 'Custom'">
+        <label for="customSchedule" class="col-sm-3 col-form-label">Custom Schedule:</label>
+        <div class="col-sm-9">
+          <input type="text" id="customSchedule" class="form-control" [(ngModel)]="customSchedule" name="customSchedule">
+        </div>
+      </div>
+      <div class="row mb-3">
+        <label for="startDate" class="col-sm-3 col-form-label">Start Date:</label>
+        <div class="col-sm-9">
+          <input type="date" id="startDate" class="form-control" [(ngModel)]="startDate" name="startDate">
+        </div>
+      </div>
+      <div class="row mb-3">
+        <label for="endDate" class="col-sm-3 col-form-label">End Date:</label>
+        <div class="col-sm-9">
+          <input type="date" id="endDate" class="form-control" [(ngModel)]="endDate" name="endDate">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-9 offset-sm-3">
+          <button class="btn btn-primary" (click)="setMedicationSchedule()">Set Medication Schedule</button>
+        </div>
+      </div>
+    </form>
+  
+    <div class="mt-3" *ngIf="notificationMessage">
+      {{ notificationMessage }}
+    </div>
+  </div>
+  
